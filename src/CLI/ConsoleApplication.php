@@ -1,5 +1,7 @@
 <?php
 
+namespace App\CLI;
+
 use App\Core\Reader\CsvStreamReader;
 use App\Core\Result\ValidationReport;
 use App\Core\Validator\SchemaValidator;

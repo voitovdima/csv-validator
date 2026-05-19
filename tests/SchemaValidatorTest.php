@@ -88,7 +88,7 @@ class SchemaValidatorTest extends TestCase
         ];
 
         $errors = $this->validator->validateRow($row, $this->schema);
-        
+
         $this->assertArrayHasKey('username', $errors);
         $this->assertStringContainsString('value exceeds max length', $errors['username']);
     }

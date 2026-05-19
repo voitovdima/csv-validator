@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use App\CLI\ConsoleApplication;
 use App\Core\Reader\CsvStreamReader;
 use App\Core\Validator\Rules\MaxRule;
 use App\Core\Validator\Rules\RequiredRule;
@@ -8,8 +11,6 @@ use App\Core\Validator\Types\DateType;
 use App\Core\Validator\Types\EmailType;
 use App\Core\Validator\Types\IntType;
 use App\Core\Validator\Types\StringType;
-
-require_once __DIR__ . '/vendor/autoload.php';
 
 $validator = new SchemaValidator();
 $validator->registerType(new IntType());
