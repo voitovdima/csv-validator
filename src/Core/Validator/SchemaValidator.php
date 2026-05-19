@@ -28,21 +28,18 @@ class SchemaValidator
         foreach ($schema as $fieldName => $fieldRules) {
             $value = $row[$fieldName] ?? null;
 
-            // 1. Первинна перевірка правила 'required'
             if (isset($this->rules['required']) && isset($fieldRules['required'])) {
                 $reqError = $this->rules['required']->validate($fieldName, $value, $fieldRules['required']);
                 if ($reqError) {
                     $errors[$fieldName] = $reqError;
-                    continue; // Якщо поле обов'язкове і відсутнє, інші правила не перевіряємо
+                    continue;
                 }
             }
 
-            // Якщо значення порожнє і пройшло перевірку required, деталі не валідуємо
             if ($value === null || $value === '') {
                 continue;
             }
 
-            // 2. Перевірка типу даних
             $typeName = $fieldRules['type'] ?? null;
             if ($typeName && isset($this->types[$typeName])) {
                 if (!$this->types[$typeName]->isValid($value)) {
@@ -56,8 +53,7 @@ class SchemaValidator
                     continue;
                 }
             }
-
-            // 3. Перевірка інших додаткових правил (наприклад, max)
+            
             foreach ($fieldRules as $ruleName => $ruleValue) {
                 if (in_array($ruleName, ['type', 'required'])) {
                     continue;

@@ -14,12 +14,14 @@ class CsvStreamReader
         }
 
         $handle = fopen($filePath, 'r');
+
         if ($handle === false) {
             throw new RuntimeException("Error: Cannot open file '{$filePath}'.");
         }
 
         try {
             $header = fgetcsv($handle, 0, $delimiter);
+
             if ($header === false) {
                 throw new RuntimeException("Error: CSV file is empty.");
             }
