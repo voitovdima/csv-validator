@@ -1,0 +1,4 @@
+vendor/
+.phpunit.result.cache
+.idea/ # якщо використовуєте PhpStorm
+.vscode/ # якщо використовуєте VS Code
